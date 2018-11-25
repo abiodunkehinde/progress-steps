@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Progress Steps</title>
+  <style>
+    body { background: #dfe4ea; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0; }
+    .steps { display: flex; align-items: center; }
+    .step { width: 40px; height: 40px; background: #ddd; color: #999; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 20px; transition: 0.3s; }
+    .step.active { background: #f368e0; color: white; }
+    .line { height: 4px; width: 100px; background: #ddd; }
+    .line.active { background: #f368e0; }
+    button { margin: 20px 10px; padding: 8px 16px; background: #2c3e50; color: white; border: none; border-radius: 8px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="steps">
+    <div class="step active">1</div>
+    <div class="line"></div>
+    <div class="step">2</div>
+    <div class="line"></div>
+    <div class="step">3</div>
+    <div class="line"></div>
+    <div class="step">4</div>
+  </div>
+  <div>
+    <button onclick="prev()">Prev</button>
+    <button onclick="next()">Next</button>
+  </div>
+  <script>
+    let current = 1;
+    function update() {
+      document.querySelectorAll('.step').forEach((s,i) => s.classList.toggle('active', i < current));
+      document.querySelectorAll('.line').forEach((l,i) => l.classList.toggle('active', i < current-1));
+    }
+    function next() { if(current < 4) { current++; update(); } }
+    function prev() { if(current > 1) { current--; update(); } }
+  </script>
+</body>
+</html>
